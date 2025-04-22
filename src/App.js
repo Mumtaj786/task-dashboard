@@ -37,6 +37,13 @@ function App() {
     updated[index].completed = !updated[index].completed;
     setTasks(updated);
   };
+
+  const editTask = (index, updatedTask) => {
+    const updated = [...tasks];
+    updated[index] = { ...updated[index], ...updatedTask };
+    setTasks(updated);
+  };
+  
   
   
 
@@ -51,12 +58,14 @@ function App() {
   ) : (
     filteredTasks.map((task, i) => (
       <TaskCard
-        key={i}
-        task={task}
-        index={i}
-        deleteTask={deleteTask}
-        toggleCompletion={toggleCompletion}
-      />
+  key={i}
+  task={task}
+  index={i}
+  deleteTask={deleteTask}
+  toggleCompletion={toggleCompletion}
+  editTask={editTask}
+/>
+
 
     ))
   )}

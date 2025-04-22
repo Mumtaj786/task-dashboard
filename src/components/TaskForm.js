@@ -5,9 +5,9 @@ function TaskForm({ addTask }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (task.title.trim() === '') return;
+    if (!task.title.trim()) return;
     addTask(task);
-    setTask({ title: '', status: 'To-Do' });
+    setTask({ title: '', status: 'To-Do', dueDate: '' }); // 👈 reset after submit
   };
 
   return (
@@ -29,6 +29,13 @@ function TaskForm({ addTask }) {
           <option>In Progress</option>
           <option>Done</option>
         </select>
+        <input
+            type="date"
+            className="form-control mt-2"
+            value={task.dueDate}
+            onChange={(e) => setTask({ ...task, dueDate: e.target.value })}
+            />
+
         <button className="btn btn-primary">Add Task</button>
       </div>
     </form>
