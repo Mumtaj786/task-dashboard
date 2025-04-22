@@ -31,6 +31,13 @@ function App() {
     const matchesSearch = task.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesStatus && matchesSearch;
   });
+
+  const toggleCompletion = (index) => {
+    const updated = [...tasks];
+    updated[index].completed = !updated[index].completed;
+    setTasks(updated);
+  };
+  
   
 
   return (
@@ -43,7 +50,14 @@ function App() {
     <p className="text-muted">No tasks available.</p>
   ) : (
     filteredTasks.map((task, i) => (
-      <TaskCard key={i} task={task} index={i} deleteTask={deleteTask} />
+      <TaskCard
+        key={i}
+        task={task}
+        index={i}
+        deleteTask={deleteTask}
+        toggleCompletion={toggleCompletion}
+      />
+
     ))
   )}
 </div>
